@@ -1,21 +1,56 @@
 using NUnit.Framework;
-
 using UnitTestAndDebug;
+
 
 namespace Tests
 {
     public class Tests
     {
-        [SetUp]
-        public void Setup()
+        [Test]
+        public void IdIsValidTest() // cedula valida
         {
-            // Insertá tu código de inicialización aquí
+            bool result = IdUtils.IdIsValid("51610313");
+            Assert.AreEqual(true, result);
         }
 
         [Test]
-        public void Test1() // Cambiá el nombre para indicar qué estás probando
+        public void IdIsValidTest2() // puntos y guiones
         {
-            // Insertá tu código  de pruebaaquí
+            bool result = IdUtils.IdIsValid("5.161.031-3");
+            Assert.AreEqual(true, result);
+        }
+
+        [Test]
+        public void IdIsValidTest3() // numero del string
+        {
+            bool result = IdUtils.IdIsValid("5.161.031-3");
+            Assert.AreEqual(true, result);
+        }
+
+        [Test]
+        public void IdIsValidTest4() // cedula invalida
+        {
+            bool result = IdUtils.IdIsValid("8.765.432-1");
+            Assert.AreEqual(false, result);
+        }
+
+        [Test]
+        public void NameTest1() // nombre valido
+        {
+            Person Franco = new Person("Franco Robotti", "5.161.031-3");
+
+            string result = Franco.Name;
+
+            Assert.AreEqual("Franco Robotti",result);
+        }
+
+        public void NameTest2() // nombre vacio
+        {
+            Person Franco = new Person("", "5.161.031-3");
+
+            string result = Franco.Name;
+
+            Assert.AreEqual("",result);
         }
     }
 }
